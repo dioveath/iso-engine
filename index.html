@@ -7,18 +7,90 @@
     <title> Isometric </title>
     <style>
      * {
+       /* cursor: none; */
        box-sizing: border-box;
        margin: 0px;
        padding: 0px;
+       font-family: "Consolas";
+       color: white;
      }
      canvas {
-       /* display: block; */
+       display: block;
      }
+
+     .stack {
+       position: fixed;
+       top: 0;
+       left: 0;
+       padding: 1rem 2rem;
+       background-color: #444444aa;
+       padding: 2rem 2rem;
+       border: 2px solid white;
+       border-radius: 5px;
+     }
+
+     form {
+       display: flex;
+       flex-direction: column;
+       gap: 0.5rem;
+       margin: 1rem;
+     }
+
+     input[type=button] {
+       padding: 0.5rem 2rem;
+       outline: none;
+       background-color: lightgreen;
+       border: 2px solid green;
+       border-radius: 5px;
+       /* font-family: "" */
+     }
+
+     input[type=number] {
+       padding: 0.5rem 2rem;
+       outline: none;
+       color: black;
+     }
+
+     h1{
+       margin: 0.5rem 0rem;
+     }
+
+     h2 {
+       margin: 0.5rem 0rem;
+     }
+
+     .hide {
+       display: none;
+     }
+
+
     </style>
   </head>
   <body>
     <!-- <div id="app"></div> -->
     <script type="module" src="/src/main.ts"></script>
-    <canvas id="canvas"></canvas>
+    <div class="stack" id="debugUI">
+      <h1> Welcome </h1>
+      <h2> Isometric Editor </h2>
+      <form>
+	<div>
+	  <input name="tilesx" type="number" value="10" min=1 max=100 id="tilesx"/>	  
+	  <br/>
+	  <label for="tilesx"> No of tiles on x-axis </label>
+	</div>
+
+	<div>
+	  <input name="tilesy" type="number" value="10" min=1 max=100 id="tilesy"/>	  
+	  <br/>
+	  <label for="tilesy"> No of tiles on y-axis </label>
+	</div>
+
+	<input name="" type="button" value="Generate New Tiles" id="generateButton"/>
+      </form>
+      <code> Press 'Esc' to hide </code>
+    </div>
+    
+
+    <canvas id="canvas" ></canvas>
   </body>
 </html>
