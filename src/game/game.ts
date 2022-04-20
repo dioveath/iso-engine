@@ -41,20 +41,21 @@ export default class Game {
     }
 
     public removeScene(id: string): void {
-	this._scenes.filter((s) => {
-	    if(s.id == id) {
+	for(let i = 0; i < this._scenes.length; i++){
+	    let s: Scene = this._scenes[i];
+	    if(s.id === id) {
 		s.destroy();
-		return true;
-	    }
-	    return false;
-	});
+		this._scenes.splice(i, 1);
+		break;
+	    }	    
+	}
     }
 
-    private _previousTime: number = 0;
+    private _previousTime: number = Date.now();
 
     public gameLoop(): void {
-	let deltaTime : number = Date.now() as number - this._previousTime;
-	this._previousTime = Date.now();
+	let deltaTime : number = (performance.now() - this._previousTime)/1000;
+	this._previousTime = performance.now();
 
 	for(let i = 0; i < this._scenes.length; i++){
 	    this._scenes[i].update(deltaTime);
@@ -63,6 +64,7 @@ export default class Game {
 	for(let i = 0; i < this._scenes.length; i++){
 	    this._scenes[i].render(this._graphics.context, deltaTime);
 	}
+
 
 	this._loopId = requestAnimationFrame(this.gameLoop.bind(this));
     }
