@@ -110,7 +110,8 @@ export default class IsoWorld extends Scene {
 	this.renderDebugText(context, "No. of Tiles: " + this.tiles.length * this.tiles[0].length, 1);
 	this.renderDebugText(context, "FPS: " + (1/deltaTime).toFixed(2), 2);
 
-	this.renderInfoText(context, "You can hover over tiles, and select a tile with 'left' click!", 0);
+	this.renderInfoText(context, "You can hover over tiles, and select a tile with 'left' click!.", 0);
+	this.renderInfoText(context, "You cannot select the border tiles.", 1);	
 
 	context.restore();
     }
@@ -126,10 +127,11 @@ export default class IsoWorld extends Scene {
 
     renderInfoText(context: CanvasRenderingContext2D, text: string, index: number): void {
 	let padding = 50;
+	let gap = 30;
 	context.font = "normal 18px consolas"
 	let textSize = context.measureText(text);
 	context.fillStyle = "white";
-	context.fillText(text, -textSize.width/2, this._game.height/4 + padding * (index + 1));
+	context.fillText(text, -textSize.width/2, this._game.height/4 + padding + gap * index);
     }
 
     renderTiles(context: CanvasRenderingContext2D): void{
